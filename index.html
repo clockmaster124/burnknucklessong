@@ -35,12 +35,56 @@ body{
     #000000 100%);
 }
 
-/* BACKGROUND PARTICLES */
+/* BACKGROUND GLOW */
+
+body::before{
+
+    content:"";
+
+    position:absolute;
+    inset:-25%;
+
+    background:
+
+    radial-gradient(circle at 20% 20%,
+    rgba(0,183,255,0.15),
+    transparent 30%),
+
+    radial-gradient(circle at 80% 70%,
+    rgba(0,119,255,0.12),
+    transparent 35%),
+
+    radial-gradient(circle at 50% 50%,
+    rgba(0,217,255,0.06),
+    transparent 40%);
+
+    filter:blur(70px);
+
+    animation:aurora 18s ease infinite;
+}
+
+@keyframes aurora{
+
+    0%{
+        transform:translateX(0px);
+    }
+
+    50%{
+        transform:translateX(-35px);
+    }
+
+    100%{
+        transform:translateX(0px);
+    }
+}
+
+/* PARTICLES */
 
 .particles{
 
     position:absolute;
     inset:0;
+
     overflow:hidden;
 }
 
@@ -53,11 +97,11 @@ body{
 
     border-radius:50%;
 
-    background:#66bfff;
+    background:#66d9ff;
 
     box-shadow:
-    0 0 12px rgba(102,191,255,0.9),
-    0 0 24px rgba(102,191,255,0.3);
+    0 0 10px rgba(102,217,255,0.9),
+    0 0 18px rgba(102,217,255,0.25);
 
     animation:float linear infinite;
 }
@@ -65,7 +109,10 @@ body{
 @keyframes float{
 
     from{
-        transform:translateY(100vh);
+
+        transform:
+        translateY(120vh);
+
         opacity:0;
     }
 
@@ -74,7 +121,10 @@ body{
     }
 
     to{
-        transform:translateY(-120vh);
+
+        transform:
+        translateY(-120vh);
+
         opacity:0;
     }
 }
@@ -85,30 +135,30 @@ body{
 
     position:relative;
 
-    width:440px;
+    width:min(400px,88vw);
 
-    padding:26px;
+    padding:20px;
 
-    border-radius:34px;
+    border-radius:28px;
 
     overflow:hidden;
 
     background:
     linear-gradient(
     145deg,
-    rgba(6,12,24,0.96),
-    rgba(0,0,0,0.95));
+    rgba(5,12,22,0.97),
+    rgba(0,0,0,0.96));
 
-    border:1px solid rgba(102,191,255,0.12);
+    border:1px solid rgba(102,217,255,0.10);
 
     backdrop-filter:blur(18px);
 
     box-shadow:
-    0 0 80px rgba(0,0,0,1),
-    inset 0 0 35px rgba(102,191,255,0.05);
+    0 0 50px rgba(0,0,0,1),
+    inset 0 0 20px rgba(102,217,255,0.04);
 }
 
-/* GLOW BORDER */
+/* BORDER GLOW */
 
 .player::before{
 
@@ -117,14 +167,14 @@ body{
     position:absolute;
     inset:-2px;
 
-    border-radius:36px;
+    border-radius:30px;
 
     background:
     linear-gradient(
     135deg,
     #00152e,
     #0f4c81,
-    #63b9ff,
+    #63d7ff,
     #00152e);
 
     background-size:300% 300%;
@@ -133,9 +183,9 @@ body{
 
     z-index:-1;
 
-    filter:blur(18px);
+    filter:blur(14px);
 
-    opacity:0.45;
+    opacity:0.35;
 }
 
 @keyframes borderMove{
@@ -159,23 +209,21 @@ body{
 
     text-align:center;
 
-    color:#9ad8ff;
+    color:#9fe8ff;
 
-    font-size:27px;
+    font-size:22px;
 
-    font-weight:800;
+    font-weight:900;
 
     letter-spacing:4px;
 
     text-transform:uppercase;
 
-    margin-bottom:20px;
-
-    white-space:nowrap;
+    margin-bottom:18px;
 
     text-shadow:
-    0 0 12px rgba(102,191,255,0.7),
-    0 0 30px rgba(102,191,255,0.25);
+    0 0 10px rgba(102,217,255,0.6),
+    0 0 20px rgba(102,217,255,0.2);
 
     animation:titlePulse 4s ease-in-out infinite;
 }
@@ -187,7 +235,7 @@ body{
     }
 
     50%{
-        transform:scale(1.03);
+        transform:scale(1.02);
     }
 }
 
@@ -199,7 +247,7 @@ body{
 
     height:125px;
 
-    border-radius:24px;
+    border-radius:20px;
 
     overflow:hidden;
 
@@ -207,11 +255,11 @@ body{
     linear-gradient(
     to bottom,
     rgba(255,255,255,0.015),
-    rgba(102,191,255,0.03));
+    rgba(102,217,255,0.025));
 
-    border:1px solid rgba(102,191,255,0.08);
+    border:1px solid rgba(102,217,255,0.06);
 
-    margin-bottom:20px;
+    margin-bottom:16px;
 
     display:flex;
     justify-content:center;
@@ -220,60 +268,69 @@ body{
 
 /* CENTER GLOW */
 
-.beam{
+.core{
 
     position:absolute;
 
-    width:180px;
-    height:180px;
+    width:160px;
+    height:160px;
 
     border-radius:50%;
 
     background:
     radial-gradient(circle,
-    rgba(102,191,255,0.18),
+    rgba(102,217,255,0.10),
     transparent 70%);
 
     filter:blur(35px);
 
-    animation:pulse 4s ease-in-out infinite;
+    animation:corePulse 4s ease-in-out infinite;
 }
 
-@keyframes pulse{
+@keyframes corePulse{
 
     0%,100%{
+
         transform:scale(1);
-        opacity:0.45;
+
+        opacity:0.35;
     }
 
     50%{
-        transform:scale(1.2);
+
+        transform:scale(1.15);
+
         opacity:1;
     }
 }
 
-/* SOUND RINGS */
+/* RINGS */
 
 .ring{
 
     position:absolute;
 
-    border:1px solid rgba(102,191,255,0.08);
+    border:1px solid rgba(102,217,255,0.08);
 
     border-radius:50%;
+}
 
+.playing .ring1{
     animation:ringPulse 5s infinite;
 }
 
+.playing .ring2{
+    animation:ringPulse 5s infinite 2s;
+}
+
 .ring1{
-    width:120px;
-    height:120px;
+    width:90px;
+    height:90px;
 }
 
 .ring2{
-    width:190px;
-    height:190px;
-    animation-delay:2s;
+    width:150px;
+    height:150px;
 }
 
 @keyframes ringPulse{
@@ -284,7 +341,7 @@ body{
     }
 
     50%{
-        opacity:0.35;
+        opacity:0.3;
     }
 
     100%{
@@ -293,20 +350,20 @@ body{
     }
 }
 
-/* LIGHT SWEEP */
+/* LASER */
 
-.light-sweep{
+.laser{
 
     position:absolute;
 
-    width:120px;
-    height:220px;
+    width:90px;
+    height:180px;
 
     background:
     linear-gradient(
     to right,
     transparent,
-    rgba(102,191,255,0.08),
+    rgba(102,217,255,0.06),
     transparent);
 
     transform:rotate(18deg);
@@ -317,15 +374,15 @@ body{
 @keyframes sweep{
 
     from{
-        left:-160px;
+        left:-120px;
     }
 
     to{
-        left:520px;
+        left:500px;
     }
 }
 
-/* CONNECTED WAVES */
+/* BARS */
 
 .wave-line{
 
@@ -339,14 +396,14 @@ body{
     justify-content:center;
     align-items:flex-end;
 
-    gap:5px;
+    gap:4px;
 
-    padding:0 18px;
+    padding:0 10px;
 
     z-index:5;
 }
 
-/* CONNECTOR */
+/* CENTER LINE */
 
 .wave-line::before{
 
@@ -354,22 +411,22 @@ body{
 
     position:absolute;
 
-    width:92%;
+    width:94%;
     height:2px;
 
-    top:52%;
+    top:50%;
 
     background:
     linear-gradient(
     90deg,
     transparent,
-    rgba(102,191,255,0.35),
+    rgba(102,217,255,0.28),
     transparent);
 
     filter:blur(2px);
 }
 
-/* BARS */
+/* BAR STYLE */
 
 .bar{
 
@@ -377,23 +434,27 @@ body{
 
     width:6px;
 
+    height:5px;
+
     border-radius:20px;
 
     background:
     linear-gradient(
     to top,
     #0d3964,
-    #54b4ff,
-    #d3efff);
+    #54d2ff,
+    #e7fbff);
 
     box-shadow:
-    0 0 14px rgba(102,191,255,0.35),
-    0 0 28px rgba(102,191,255,0.12);
+    0 0 12px rgba(102,217,255,0.30),
+    0 0 24px rgba(102,217,255,0.10);
 
     transform-origin:bottom;
+
+    opacity:0.15;
 }
 
-/* WAVE GLOW */
+/* BAR GLOW */
 
 .bar::after{
 
@@ -406,106 +467,96 @@ body{
 
     transform:translateX(-50%);
 
-    width:18px;
-    height:18px;
+    width:14px;
+    height:14px;
 
     border-radius:50%;
 
     background:
     radial-gradient(circle,
-    rgba(102,191,255,0.18),
+    rgba(102,217,255,0.15),
     transparent 70%);
 }
 
-/* SMALLER INITIAL HEIGHTS */
+/* PLAYING EFFECT */
 
-.b1{height:12px;}
-.b2{height:22px;}
-.b3{height:38px;}
-.b4{height:55px;}
-.b5{height:42px;}
-.b6{height:30px;}
-.b7{height:52px;}
-.b8{height:68px;}
-.b9{height:54px;}
-.b10{height:36px;}
-.b11{height:20px;}
-.b12{height:12px;}
+.playing .bar{
 
-/* REALISTIC MOTION */
+    opacity:1;
+}
+
+/* ANIMATIONS */
 
 .playing .b1{animation:eq1 1s infinite ease-in-out;}
 .playing .b2{animation:eq2 1.2s infinite ease-in-out;}
-.playing .b3{animation:eq3 0.8s infinite ease-in-out;}
+.playing .b3{animation:eq3 0.9s infinite ease-in-out;}
 .playing .b4{animation:eq4 1.4s infinite ease-in-out;}
 .playing .b5{animation:eq5 1s infinite ease-in-out;}
-.playing .b6{animation:eq6 1.1s infinite ease-in-out;}
-.playing .b7{animation:eq7 0.75s infinite ease-in-out;}
-.playing .b8{animation:eq8 1.5s infinite ease-in-out;}
-.playing .b9{animation:eq9 0.9s infinite ease-in-out;}
+.playing .b6{animation:eq6 0.8s infinite ease-in-out;}
+.playing .b7{animation:eq7 1.1s infinite ease-in-out;}
+.playing .b8{animation:eq8 1.3s infinite ease-in-out;}
+.playing .b9{animation:eq9 0.7s infinite ease-in-out;}
 .playing .b10{animation:eq10 1.2s infinite ease-in-out;}
 .playing .b11{animation:eq11 1s infinite ease-in-out;}
-.playing .b12{animation:eq12 0.85s infinite ease-in-out;}
-
-/* LOWER REALISTIC WAVES */
+.playing .b12{animation:eq12 0.9s infinite ease-in-out;}
 
 @keyframes eq1{
-0%,100%{height:12px;}
-50%{height:28px;}
+0%,100%{height:6px;}
+50%{height:26px;}
 }
 
 @keyframes eq2{
-0%,100%{height:22px;}
-50%{height:42px;}
+0%,100%{height:8px;}
+50%{height:48px;}
 }
 
 @keyframes eq3{
-0%,100%{height:38px;}
-50%{height:65px;}
+0%,100%{height:10px;}
+50%{height:60px;}
 }
 
 @keyframes eq4{
-0%,100%{height:55px;}
-50%{height:85px;}
+0%,100%{height:8px;}
+50%{height:44px;}
 }
 
 @keyframes eq5{
-0%,100%{height:42px;}
-50%{height:70px;}
+0%,100%{height:6px;}
+50%{height:36px;}
 }
 
 @keyframes eq6{
-0%,100%{height:30px;}
-50%{height:55px;}
+0%,100%{height:10px;}
+50%{height:58px;}
 }
 
 @keyframes eq7{
-0%,100%{height:52px;}
-50%{height:82px;}
-}
-
-@keyframes eq8{
-0%,100%{height:68px;}
-50%{height:45px;}
-}
-
-@keyframes eq9{
-0%,100%{height:54px;}
-50%{height:88px;}
-}
-
-@keyframes eq10{
-0%,100%{height:36px;}
-50%{height:62px;}
-}
-
-@keyframes eq11{
-0%,100%{height:20px;}
+0%,100%{height:8px;}
 50%{height:42px;}
 }
 
+@keyframes eq8{
+0%,100%{height:6px;}
+50%{height:32px;}
+}
+
+@keyframes eq9{
+0%,100%{height:8px;}
+50%{height:62px;}
+}
+
+@keyframes eq10{
+0%,100%{height:10px;}
+50%{height:50px;}
+}
+
+@keyframes eq11{
+0%,100%{height:8px;}
+50%{height:38px;}
+}
+
 @keyframes eq12{
-0%,100%{height:12px;}
+0%,100%{height:6px;}
 50%{height:26px;}
 }
 
@@ -515,13 +566,13 @@ body{
 
     text-align:center;
 
-    color:#9ad8ff;
+    color:#9fe8ff;
 
-    font-size:11px;
+    font-size:10px;
 
     letter-spacing:4px;
 
-    margin-bottom:14px;
+    margin-bottom:12px;
 
     opacity:0;
 
@@ -538,24 +589,56 @@ audio{
 
     width:100%;
 
-    border-radius:18px;
+    border-radius:14px;
 
     filter:
-    drop-shadow(0 0 10px rgba(102,191,255,0.18));
+    drop-shadow(0 0 8px rgba(102,217,255,0.15));
 }
 
 /* TIMER */
 
 .timer{
 
-    margin-top:12px;
+    margin-top:10px;
 
     display:flex;
     justify-content:space-between;
 
     color:rgba(255,255,255,0.45);
 
-    font-size:12px;
+    font-size:11px;
+}
+
+/* FLASH */
+
+.flash{
+
+    position:absolute;
+    inset:0;
+
+    background:
+    radial-gradient(circle,
+    rgba(102,217,255,0.05),
+    transparent 70%);
+
+    opacity:0;
+    pointer-events:none;
+}
+
+.playing .flash{
+
+    animation:flashBeat 1.3s infinite;
+}
+
+@keyframes flashBeat{
+
+    0%,100%{
+        opacity:0;
+    }
+
+    50%{
+        opacity:1;
+    }
 }
 
 </style>
@@ -564,38 +647,24 @@ audio{
 
 <body>
 
-<!-- PARTICLES -->
-
-<div class="particles">
-
-<span style="left:10%; animation-duration:12s;"></span>
-<span style="left:22%; animation-duration:16s;"></span>
-<span style="left:35%; animation-duration:14s;"></span>
-<span style="left:48%; animation-duration:20s;"></span>
-<span style="left:60%; animation-duration:15s;"></span>
-<span style="left:72%; animation-duration:18s;"></span>
-<span style="left:85%; animation-duration:13s;"></span>
-
-</div>
-
-<!-- PLAYER -->
+<div class="particles" id="particles"></div>
 
 <div class="player" id="player">
+
+<div class="flash"></div>
 
 <div class="title">
 CLUB THEME MUSIC
 </div>
 
-<!-- VISUALIZER -->
-
 <div class="visualizer">
 
-<div class="beam"></div>
+<div class="core"></div>
 
 <div class="ring ring1"></div>
 <div class="ring ring2"></div>
 
-<div class="light-sweep"></div>
+<div class="laser"></div>
 
 <div class="wave-line">
 
@@ -650,20 +719,28 @@ document.getElementById("current");
 const duration =
 document.getElementById("duration");
 
+/* PLAY */
+
 audio.addEventListener("play",()=>{
 
     player.classList.add("playing");
 });
+
+/* PAUSE */
 
 audio.addEventListener("pause",()=>{
 
     player.classList.remove("playing");
 });
 
+/* END */
+
 audio.addEventListener("ended",()=>{
 
     player.classList.remove("playing");
 });
+
+/* TIMER */
 
 audio.addEventListener("loadedmetadata",()=>{
 
@@ -688,6 +765,28 @@ audio.addEventListener("timeupdate",()=>{
     current.textContent =
     mins + ":" + (secs < 10 ? "0":"") + secs;
 });
+
+/* PARTICLES */
+
+const particles =
+document.getElementById("particles");
+
+for(let i=0;i<60;i++){
+
+    const p =
+    document.createElement("span");
+
+    p.style.left =
+    Math.random()*100 + "%";
+
+    p.style.animationDuration =
+    (8 + Math.random()*12) + "s";
+
+    p.style.opacity =
+    Math.random();
+
+    particles.appendChild(p);
+}
 
 </script>
 
